@@ -9,3 +9,12 @@ form.addEventListener("submit",function(event){
     alert(`Hi ${name.value} your password is set to ${pass.value}`);
 
 });
+
+// Input event. tracks every character entered.
+let para = document.querySelector("#parag");
+
+para.addEventListener("input",function(){
+    let New = document.querySelector('h1');
+    New.innerText = para.value;
+});
+
