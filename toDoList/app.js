@@ -15,7 +15,8 @@ btn.addEventListener('click', function() {
     btnDlt.classList.add('dlt', 'btn', 'btn-danger', 'btn-sm');
     btnDlt.innerText = 'delete';
     
-    ul.appendChild(NewTask);
+    // avoids adding empty task.
+    if(NewTask.innerText!="") ul.appendChild(NewTask);
     NewTask.appendChild(btnDlt);
     inp.value = "";
 });

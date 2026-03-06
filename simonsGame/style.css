@@ -1,0 +1,37 @@
+body {
+    background-color: #011F3F; /* Classic Dark Blue Simon background */
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+/* 1. The Layout Logic */
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(2, 200px); /* 2 columns */
+    grid-template-rows: repeat(2, 200px);    /* 2 rows */
+    gap: 20px;                               /* Spacing between boxes */
+    justify-content: center;                 /* Center horizontally */
+    margin-top: 50px;
+}
+
+/* 2. The Box Styling */
+.btn {
+    height: 200px;
+    width: 200px;
+    border: 8px solid black;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+/* 3. The Colors */
+.red    { background-color: #ff4c4c; }
+.cyan   { background-color: #00ffff; }
+.orange { background-color: #ffa500; }
+.blue   { background-color: #1e90ff; }
+
+/* 4. The "Flash" effect (For your JS logic later) */
+.flash {
+    background-color: white !important;
+    box-shadow: 0 0 20px white;
+}
