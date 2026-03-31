@@ -7,6 +7,9 @@
 const express = require("express");
 // app is an object.
 const app = express();
+const path= require("path");
+
+const dataBase = require("../data.json");
 
 console.dir(app);
 // express helps us to listen to incoming requests.
@@ -32,17 +35,23 @@ app.listen(port , ()=>{
 // in a network or btw or across multiplle network.
 // this listens to specific req.
 
+
+
+app.set("views", path.join(__dirname, "../EJSdir/views"));
+// app.set("views", path) defines where Express should look for 
+// template files when res.render() is called, ensuring it doesn’t rely on default paths that may be incorrect.
+app.set("view engine", "ejs");
+
 app.get("/home",(req,res)=>{
-    console.log("This is the Home page");
-    res.send("Home page");
+    console.log(dataBase);
+    res.render("home",{name : dataBase});
 });
 
 app.get("/login",(req,res)=>{
     console.log("This is the login page");
-    res.send("login page");
-    res.render("");
+    // res.send("login page");
+    res.render("login");
 });
-
 
 // path parameters.
 app.get("/home/:user",(req,res)=>{
