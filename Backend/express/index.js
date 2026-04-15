@@ -35,7 +35,7 @@ app.listen(port , ()=>{
 // in a network or btw or across multiplle network.
 // this listens to specific req.
 
-
+fun
 
 app.set("views", path.join(__dirname, "../EJSdir/views"));
 // app.set("views", path) defines where Express should look for 

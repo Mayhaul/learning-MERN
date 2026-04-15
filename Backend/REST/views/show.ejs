@@ -12,6 +12,9 @@
             <h4 class="content"><%= post.content%></h4>
             <a href="/posts/<%= post.id %>/edit">edit post</a>
         </div>
-        <a href="/">Back</a>
+        <a href="/">Back</a> <br>
+        <form action="/posts/<%= post.id %>/delete" method="post">
+            <button type="submit">Delete post</button>
+        </form>
 </body>
 </html>

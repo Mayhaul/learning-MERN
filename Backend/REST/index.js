@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 
+// using uuid for generating unique random id.
 const { v4 : uuidv4 } = require('uuid');
 
 const app = express();
@@ -21,7 +22,7 @@ app.listen(port,()=>{
 let posts = [
     { id: uuidv4(), username: "Apna College", content: "I love coding" },
     { id: uuidv4(), username: "Mehul Verma", content: "Mehul loves choding" },
-    { id: uuidv4(), username: "Aarav Sharma", content: "Frontend feels like art" },
+    { id: uuidv4(), username: "Arnav Chauhan", content: "Mai hu Arnav kala UMC ala" },
     { id: uuidv4(), username: "Vivaan Gupta", content: "Debugging is my cardio" },
     { id: uuidv4(), username: "Aditya Singh", content: "C++ > everything" },
     { id: uuidv4(), username: "Krishna Patel", content: "Learning DSA daily" },
@@ -46,11 +47,22 @@ app.get('/posts',(req,res)=>{
     res.render("home",{posts});
 });
 
+// Create API
 app.get('/posts/new',(req,res)=>{
     res.render("new");
 });
 
-// Get single post by ID
+// the form in posts/new will send a post request here.
+app.post('/posts',(req,res)=>{
+    console.log(req.body);
+    let {username,content} = req.body;
+    let id = uuidv4();
+    posts.push({id,username,content});
+    res.redirect("/posts");
+});
+
+// Get single post by ID. 
+// READ API
 app.get('/posts/:id', (req, res) => {
     const { id } = req.params;
     const post = posts.find((p) => p.id === id);
@@ -62,15 +74,8 @@ app.get('/posts/:id', (req, res) => {
     }
 });
 
-app.post('/posts',(req,res)=>{
-    console.log(req.body);
-    let {username,content} = req.body;
-    let id = uuidv4();
-    posts.push({id,username,content});
-    res.redirect("/posts");
-});
-
 // 1. Show Edit Form
+// update API
 app.get('/posts/:id/edit', (req, res) => {
     const { id } = req.params;
     const post = posts.find(p => p.id === id);
@@ -98,3 +103,13 @@ app.post('/posts/:id', (req, res) => {        // Changed to POST
 });
 
 // see what method override does.
+
+// Delete API
+app.post('/posts/:id/delete',(req,res)=>{
+    const {id} = req.params;
+    const post = posts.find((p)=> id === p.id);
+    posts = posts.filter(post => post.id !== id);
+    console.log("Deleted");
+    console.log("Delete route hit:", id);
+    res.redirect('/');
+});
