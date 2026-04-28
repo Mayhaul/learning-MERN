@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp | Home</title>
+    <style>
+        :root {
+            --whatsapp-green: #075E54;
+            --whatsapp-light: #25D366;
+            --bg-gray: #ece5dd;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-gray); margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        h1 { color: var(--whatsapp-green); text-align: center; }
+        
+        .chat-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--whatsapp-light);
+        }
+        .chat-info { display: flex; justify-content: space-between; font-size: 0.85rem; color: #666; margin-bottom: 8px; }
+        .from-user { font-weight: bold; color: var(--whatsapp-green); }
+        .message-text { font-size: 1.1rem; color: #333; margin: 5px 0; }
+        .timestamp { font-style: italic; font-size: 0.75rem; text-align: right; color: #999; }
+        
+        .btn-new {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-new:hover { background-color: #054d44; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>All Chats</h1>
+        <a href="/chats/new" class="btn-new">Create New Chat</a>
+
+        <hr>
+
+        <% for(let chat of chats) { %>
+            <div class="chat-card">
+                <div class="chat-info">
+                    <span>From: <span class="from-user"><%= chat.from %></span></span>
+                    <span>To: <span class="from-user"><%= chat.to %></span></span>
+                </div>
+                <p class="message-text"><%= chat.msg %></p>
+                <div class="timestamp">
+                    <%= chat.created_at.toString().split(' ').slice(0, 5).join(' ') %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+</body>
+</html>
