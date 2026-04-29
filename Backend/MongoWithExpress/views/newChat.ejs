@@ -24,20 +24,17 @@
 <body>
 
     <div class="form-container">
-        <h2>Start a New Chat</h2>
-        <form method="POST" action="/chats">
-            <label for="from">From:</label>
-            <input type="text" id="from" name="from" placeholder="Enter your name" required>
+        <h2>New Chat</h2>
 
-            <label for="to">To:</label>
-            <input type="text" id="to" name="to" placeholder="Receiver's name" required>
+<form action="/chats" method="POST">
+    <input type="text" name="from" placeholder="From" required>
+    <input type="text" name="to" placeholder="To" required>
+    <textarea name="msg" placeholder="Message" required></textarea>
 
-            <label for="msg">Message:</label>
-            <textarea id="msg" name="msg" placeholder="Write your message here..." required></textarea>
+    <button>Send</button>
+</form>
 
-            <button type="submit">Send Message</button>
-        </form>
-        <a href="/" class="back-link">← Back to all chats</a>
+<a href="/">Back</a>
     </div>
 
 </body>

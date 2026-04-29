@@ -1,48 +1,90 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-const port = 8080;
-const path = require('path');
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
 
 const Chat = require("./models/chat");
 
+const app = express();
+const PORT = 8080;
+
+// ---------------- MIDDLEWARE ----------------
 app.use(express.json());
-// Middleware to parse URL-encoded bodies (from HTML forms)
 app.use(express.urlencoded({ extended: true }));
 
-// make the app listen on the internet.
-app.listen(port,()=>{
-    console.log("Server is live");
-})
-
-// connecting to the NoSQL DB.
-mongoose.connect("mongodb://127.0.0.1:27017/whatsapp")
-.then((resolve)=>{
-    console.log("connected");
-})
-.catch((err) => console.log(err));
-
-// view engine key is set to the value ejs.
+// ---------------- VIEW ENGINE ----------------
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-// Home route. Read API
+// ---------------- DB CONNECTION ----------------
+mongoose.connect("mongodb://127.0.0.1:27017/whatsapp")
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error(err));
+
+// ---------------- ROUTES ----------------
+
+// HOME (READ)
 app.get("/", async (req, res) => {
-    let chats = await Chat.find();
-    res.render("home", {
-        title: "My Awesome App",
-        name: "Mehul",
-        chats:chats
-    });
+    try {
+        const chats = await Chat.find();
+        res.render("home", { chats });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
-// Create API
-app.get("/chats/new",(req,res)=>{
+// CREATE FORM
+app.get("/chats/new", (req, res) => {
     res.render("newChat");
 });
 
-app.post("/chats",async (req,res)=>{
-    let chat = [req.body];
-    await Chat.insertOne(chat);
-    console.log(chat);
-    res.redirect('/');
+// CREATE
+app.post("/chats", async (req, res) => {
+    try {
+        await Chat.create(req.body);
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+    }
+});
+
+// EDIT FORM
+app.get("/chats/:id/edit", async (req, res) => {
+    try {
+        const chat = await Chat.findById(req.params.id);
+        if (!chat) return res.status(404).send("Chat not found");
+
+        res.render("edit", { chat });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+// UPDATE
+app.post("/chats/:id", async (req, res) => {
+    try {
+        await Chat.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+    }
+});
+
+// DELETE
+app.post("/chats/:id/delete", async (req, res) => {
+    try {
+        await Chat.findByIdAndDelete(req.params.id);
+        res.redirect("/");
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+// ---------------- SERVER ----------------
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

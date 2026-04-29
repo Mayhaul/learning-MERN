@@ -45,23 +45,22 @@
 
     <div class="container">
         <h1>All Chats</h1>
-        <a href="/chats/new" class="btn-new">Create New Chat</a>
 
-        <hr>
+<a href="/chats/new">+ New Chat</a>
 
-        <% for(let chat of chats) { %>
-            <div class="chat-card">
-                <div class="chat-info">
-                    <span>From: <span class="from-user"><%= chat.from %></span></span>
-                    <span>To: <span class="from-user"><%= chat.to %></span></span>
-                </div>
-                <p class="message-text"><%= chat.msg %></p>
-                <div class="timestamp">
-                    <%= chat.created_at.toString().split(' ').slice(0, 5).join(' ') %>
-                </div>
-            </div>
-        <% } %>
+<% chats.forEach(chat => { %>
+    <div>
+        <p><b><%= chat.from %></b> → <b><%= chat.to %></b></p>
+        <p><%= chat.msg %></p>
+
+        <a href="/chats/<%= chat._id %>/edit">Edit</a>
+
+        <form action="/chats/<%= chat._id %>/delete" method="POST" style="display:inline;">
+            <button>Delete</button>
+        </form>
     </div>
+    <hr>
+<% }) %>
 
 </body>
 </html>
