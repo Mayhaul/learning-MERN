@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Global Reset & Theme Variables
+   ========================================================================== */
+:root {
+  --bg-color: #121214;
+  --card-bg: #1a1a1e;
+  --text-main: #ffffff;
+  --text-muted: #a0a0ab;
+  --accent-primary: #3b82f6; /* Modern Blue */
+  --accent-hover: #2563eb;
+  --accent-secondary: #f59e0b; /* Amber/Warning Gold */
+  --accent-secondary-hover: #d97706;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Parent App Layout Container
+   ========================================================================== */
+#root > div, .app-container {
+  text-align: center;
+  max-width: 600px;
+  padding: 2.5rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #2e2e33;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #ffffff, #a0a0ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Interactive Buttons
+   ========================================================================== */
+button {
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+
+button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Styling specifically for the Title component's button to create contrast */
+button:last-of-type {
+  background-color: var(--accent-secondary);
+  box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.2);
+}
+
+button:last-of-type:hover {
+  background-color: var(--accent-secondary-hover);
+  box-shadow: 0 6px 12px -2px rgba(245, 158, 11, 0.3);
+}
+
+/* ==========================================================================
+   Message Component Styling

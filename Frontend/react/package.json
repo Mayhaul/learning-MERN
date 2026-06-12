@@ -1,0 +1,16 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "react learning",
+  "license": "ISC",
+  "author": "mayhaul",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "react": "^19.2.7"
+  }
+}
