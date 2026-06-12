@@ -1,0 +1,11 @@
+class CustumError extends Error{
+    status;
+
+    constructor(message,status){
+        super(message);
+        this.status = status;
+    }
+
+}
+
+module.exports = CustumError;
