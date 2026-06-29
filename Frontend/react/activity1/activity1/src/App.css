@@ -1,0 +1,45 @@
+/* 1. Parent container layout row */
+.item-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px;
+  background-color: #f7f9fa; /* Light background so white cards stand out */
+  flex-wrap: wrap;
+}
+
+/* 2. Style for the card wrapper div inside Item component */
+.item-container > div {
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border-radius: 24px;       /* Gives it those crisp, rounded corners */
+  width: 240px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center;
+  overflow: hidden;          /* Essential: clips the bottom bar cleanly inside the rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  font-family: Arial, sans-serif;
+}
+
+/* 3. Style for the images inside your cards */
+.item-container img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  margin-top: 20px;          /* Adds padding at the top of the card */
+  margin-bottom: 12px;       /* Pushes the text name slightly below the image */
+}
+
+/* 4. Style for your ItemName component */
+.item-container div > *:last-child {
+  background-color: #e3bc5a; /* The distinct gold/mustard hue bar from image_d8df3c.png */
+  width: 100%;
+  padding: 14px 0;
+  margin-top: auto;          /* Automatically aligns this text block right to the bottom */
+  font-weight: bold;
+  color: #000000;
+  border-top: 1px solid #bfa142;
+}
