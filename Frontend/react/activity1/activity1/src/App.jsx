@@ -1,9 +1,9 @@
 import Heading from './components/Heading'
 import Item from './components/Item'
 import './App.css'
-
-
-
+import Form from './components/Form'
+import {useState} from 'react'
+import Counter from './components/Counter'
 
 function App() {
   
@@ -25,6 +25,10 @@ const Items = [
 
 ]
 
+function helloji(x){
+  console.log(x);
+}
+
   return (
     <>
       <Heading title = {title}/>
@@ -32,10 +36,22 @@ const Items = [
       <div className="item-container" style={{display:'flex' , justifyContent: "space-evenly"}}>
         {
           Items.map((item)=>(
-            <Item name = {item.name} img = {item.img}/>
+            <div key={item.id || item.name}> 
+              <Item name={item.name} img={item.img}/>
+              {/*  Click events in React. onClick attribute in button tag*/}
+              <button onMouseOver={() => helloji(item.name)}> Click me!! </button>
+          </div>
+
           ))
+
+
         }
+
+        <Counter/>
+                
       </div>
+      <Form/>
+
 
     </>
   )
