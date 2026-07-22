@@ -2,8 +2,9 @@ import Heading from './components/Heading'
 import Item from './components/Item'
 import './App.css'
 import Form from './components/Form'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Counter from './components/Counter'
+import Like from './components/Like'
 
 function App() {
   
@@ -25,10 +26,11 @@ const Items = [
 
 ]
 
-function helloji(x){
-  console.log(x);
-}
+      function helloji(x){
+        console.log(x);
+      }
 
+      
   return (
     <>
       <Heading title = {title}/>
@@ -48,8 +50,9 @@ function helloji(x){
         }
 
         <Counter/>
-                
+        <Like/>
       </div>
+      
       <Form/>
 
 
