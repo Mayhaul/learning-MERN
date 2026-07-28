@@ -13,8 +13,14 @@ form.addEventListener("submit",function(event){
 // Input event. tracks every character entered.
 let para = document.querySelector("#parag");
 
-para.addEventListener("input",function(){
-    let New = document.querySelector('h1');
-    New.innerText = para.value;
-});
+// para.addEventListener("input",function(){
+//     let New = document.querySelector('h1');
+//     New.innerText = para.value;
+// });
+
+let heading = document.querySelector('h1');
+heading.addEventListener('click',(e)=>{
+    console.dir(e);
+})
+
 

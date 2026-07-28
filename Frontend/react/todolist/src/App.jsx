@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Form from './components/Form';
 import Task from './components/Task';
-
+import Counter from './components/Counter';
 
 function App() {
   const [tasks, updateHook] = useState([]);
@@ -43,7 +43,9 @@ function App() {
           return <Task key = {task.id} id = {task.id} value = {task.value} onDelete = {Delete}/>
         })
       }
+      <br />
       
+      <Counter/>
     </>
   )
 }
