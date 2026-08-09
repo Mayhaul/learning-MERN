@@ -6,16 +6,14 @@ btn.addEventListener('click', function() {
     console.log(inp.value);
     
     let NewTask = document.createElement('li');
-    // Adding Bootstrap classes to the LI
+    
     NewTask.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
     NewTask.innerText = inp.value;
     
     let btnDlt = document.createElement('button');
-    // Adding Bootstrap classes to the Button
     btnDlt.classList.add('dlt', 'btn', 'btn-danger', 'btn-sm');
     btnDlt.innerText = 'delete';
     
-    // avoids adding empty task.
     if(NewTask.innerText!="") ul.appendChild(NewTask);
     NewTask.appendChild(btnDlt);
     inp.value = "";
